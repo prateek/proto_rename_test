@@ -1,0 +1,9 @@
+ syntax = "proto3";
+
+ package exampleproto;
+
+ message Something {
+ 	int64 fieldX  = 1;
+ 	int64 fieldYY = 2;
+ 	int64 fieldZ  = 3;
+}
