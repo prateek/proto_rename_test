@@ -7,3 +7,15 @@
  	int64 fieldYY = 2;
  	int64 fieldZ  = 3;
 }
+
+ message StringBackedMessage {
+ 	string fieldX  = 1;
+ 	string fieldYY = 2;
+ 	string fieldZ  = 3;
+}
+
+message BytesBackedMessage {
+ 	bytes fieldX  = 1;
+ 	bytes fieldYY = 2;
+ 	bytes fieldZ  = 3;
+}
