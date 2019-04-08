@@ -65,3 +65,39 @@ func TestBytesStringCompatiblility(t *testing.T) {
 	require.Equal(t, []byte(stringMessage.FieldYY), bytesMessage.FieldYY)
 	require.Equal(t, []byte(stringMessage.FieldZ), bytesMessage.FieldZ)
 }
+
+func TestOldSchemaForwardCompatibility(t *testing.T) {
+	/*
+		This test generates a message of with String fields, encodes it and then decodes it
+		into a message which has one field less.
+
+		message newproto.NewSchema {
+			string fieldX  = 1;
+			string fieldY  = 2;
+			string fieldZ  = 3;
+			string fieldZZ = 3;
+		}
+
+		message oldproto.OldSchema {
+			bytes fieldX  = 1;
+			bytes fieldYY = 2;
+			bytes fieldZ  = 3;
+		}
+	*/
+	new := newproto.NewSchema{
+		FieldX:  123,
+		FieldY:  456,
+		FieldZ:  789,
+		FieldZZ: 1011,
+	}
+
+	newBytes, err := proto.Marshal(&new)
+	require.NoError(t, err)
+
+	var old oldproto.OldSchema
+	require.NoError(t, proto.Unmarshal(newBytes, &old))
+
+	require.Equal(t, old.FieldX, new.FieldX)
+	require.Equal(t, old.FieldY, new.FieldY)
+	require.Equal(t, old.FieldZ, new.FieldZ)
+}

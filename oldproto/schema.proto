@@ -7,3 +7,9 @@
  	int64 fieldY = 2;
  	int64 fieldZ = 3;
 }
+
+message OldSchema {
+ 	int64 fieldX = 1;
+ 	int64 fieldY = 2;
+ 	int64 fieldZ = 3;
+}

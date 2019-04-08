@@ -19,3 +19,10 @@ message BytesBackedMessage {
  	bytes fieldYY = 2;
  	bytes fieldZ  = 3;
 }
+
+message NewSchema {
+ 	int64 fieldX  = 1;
+ 	int64 fieldY  = 2;
+ 	int64 fieldZ  = 3;
+	int64 fieldZZ = 4;
+}
